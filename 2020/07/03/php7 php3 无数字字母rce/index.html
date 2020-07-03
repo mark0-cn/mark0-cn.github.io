@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | mark0</title>
+  <title>php7 php3 无数字字母rce | mark0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="mark0">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="无数字字母rce自己记录怕忘记，本文内容来源于网上大佬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php7 php3 无数字字母rce">
+<meta property="og:url" content="http://yoursite.com/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/index.html">
 <meta property="og:site_name" content="mark0">
+<meta property="og:description" content="无数字字母rce自己记录怕忘记，本文内容来源于网上大佬">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-03T02:21:39.024Z">
+<meta property="article:modified_time" content="2020-07-03T09:15:02.420Z">
 <meta property="article:author" content="mark0">
 <meta name="twitter:card" content="summary">
   
@@ -124,76 +128,149 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-php7 php3 无数字字母rce" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      php7 php3 无数字字母rce
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/" class="archive-article-date">
+
+
+        
+        <a href="/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/" class="archive-article-date">
   	<time datetime="2020-07-03T02:21:39.024Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/">php7 php3 无数字字母rce</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="无数字字母rce"><a href="#无数字字母rce" class="headerlink" title="无数字字母rce"></a>无数字字母rce</h1><p>自己记录怕忘记，本文内容来源于网上大佬</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
-          
+<h2 id="php7-无数字字母rce"><a href="#php7-无数字字母rce" class="headerlink" title="php7 无数字字母rce"></a>php7 无数字字母rce</h2><p>PHP7前是不允许用<code>($a)();</code>这样的方法来执行动态函数的，但PHP7中增加了对此的支持。所以，我们可以通过<code>(&#39;phpinfo&#39;)();</code>来执行函数，第一个括号中可以是任意PHP表达式。</p>
+<p>所以很简单了，构造一个可以生成<code>phpinfo</code>这个字符串的PHP表达式即可。payload如下（不可见字符用url编码表示）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(~%8F%97%8F%96%91%99%90)();</span><br></pre></td></tr></table></figure>
 
+<h2 id="php5无数字字母rce"><a href="#php5无数字字母rce" class="headerlink" title="php5无数字字母rce"></a>php5无数字字母rce</h2><p>Linux shell知识点：</p>
+<ol>
+<li>shell下可以利用<code>.</code>来执行任意脚本</li>
+<li>Linux文件名支持用glob通配符代替s</li>
+</ol>
+<p>我们可以发送一个上传文件的POST包，此时PHP会将我们上传的文件保存在临时文件夹下，默认的文件名是<code>/tmp/phpXXXXXX</code>，文件名最后6个字符是随机的大小写字母。</p>
+<p>利用<code>[@-[]</code>来表示大写字母；利用*和？代替字母；或者<code>[^x]</code>的方法来构造“这个位置不是字符x”排除一些；</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/" class="archive-article-date">
-  	<time datetime="2020-07-01T02:27:11.402Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ctf练习之net-force</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/">ctf练习之net-force</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -219,8 +296,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
