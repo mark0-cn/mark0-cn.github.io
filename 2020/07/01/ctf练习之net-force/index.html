@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ctf练习之net-force | mark0</title>
+  <title>bisect--二分查找 | mark0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="练习网址：https:&#x2F;&#x2F;www.net-force.nl&#x2F;challenges&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ctf练习之net-force">
+<meta property="og:title" content="bisect--二分查找">
 <meta property="og:url" content="http://yoursite.com/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/index.html">
 <meta property="og:site_name" content="mark0">
 <meta property="og:description" content="练习网址：https:&#x2F;&#x2F;www.net-force.nl&#x2F;challenges&#x2F;">
@@ -28,8 +28,8 @@
 <meta property="og:image" content="https://i.loli.net/2020/07/01/eYEQ9uqoCizNJ6f.png">
 <meta property="og:image" content="https://i.loli.net/2020/07/01/b1gNxUumYQ7yTqC.png">
 <meta property="og:image" content="https://i.loli.net/2020/07/01/Log8cTKw2yXGUae.png">
-<meta property="article:published_time" content="2020-07-01T02:27:11.402Z">
-<meta property="article:modified_time" content="2020-07-07T12:47:40.498Z">
+<meta property="article:published_time" content="2020-06-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-08T02:31:56.311Z">
 <meta property="article:author" content="mark0">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/img/ctf_net-force-1.png">
@@ -161,24 +161,21 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ctf练习之net-force
+      bisect--二分查找
     </h1>
   
 
 
         
         <a href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/" class="archive-article-date">
-  	<time datetime="2020-07-01T02:27:11.402Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+  	<time datetime="2020-06-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>练习网址：<a href="https://www.net-force.nl/challenges/" target="_blank" rel="noopener">https://www.net-force.nl/challenges/</a></p>
-<a id="more"></a>
-
-<h2 id="JavaScript部分"><a href="#JavaScript部分" class="headerlink" title="JavaScript部分"></a>JavaScript部分</h2><h3 id="Javascript-secure"><a href="#Javascript-secure" class="headerlink" title="Javascript, secure?"></a>Javascript, secure?</h3><p><img src="/img/ctf_net-force-1.png" alt="image"></p>
+        <h2 id="JavaScript部分"><a href="#JavaScript部分" class="headerlink" title="JavaScript部分"></a>JavaScript部分</h2><h3 id="Javascript-secure"><a href="#Javascript-secure" class="headerlink" title="Javascript, secure?"></a>Javascript, secure?</h3><p><img src="/img/ctf_net-force-1.png" alt="image"></p>
 <p>通过view-source：url访问查看页面源码<br><img src="/img/ctf_net-force-1-2.png" alt="image"></p>
 <p>找到flag<br><font color=red>知识点：禁用右键查看源码，通过view-source：url访问查看页面源码</font></p>
 <h3 id="This-won’t-take-long…"><a href="#This-won’t-take-long…" class="headerlink" title="This won’t take long…"></a>This won’t take long…</h3><p>页面f12发现js源码<br><img src="/img/ctf_net-force-2-1.png" alt="image"></p>
@@ -212,6 +209,17 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ctf//" class="article-tag-list-link color4">ctf</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -279,7 +287,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          php7 php3 无数字字母rce
+          bisect--二分查找
         
       </div>
     </a>
@@ -300,6 +308,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript部分"><span class="toc-number">1.</span> <span class="toc-text">JavaScript部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Javascript-secure"><span class="toc-number">1.1.</span> <span class="toc-text">Javascript, secure?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#This-won’t-take-long…"><span class="toc-number">1.2.</span> <span class="toc-text">This won’t take long…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Escape-now"><span class="toc-number">1.3.</span> <span class="toc-text">Escape now!!!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Is-this-safe…"><span class="toc-number">1.4.</span> <span class="toc-text">Is this safe…?!?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Micro-oft-crap…"><span class="toc-number">1.5.</span> <span class="toc-text">Micro$oft crap…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-Guardian"><span class="toc-number">1.6.</span> <span class="toc-text">HTML Guardian</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Having-fun"><span class="toc-number">1.7.</span> <span class="toc-text">Having fun?!? :-)</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>

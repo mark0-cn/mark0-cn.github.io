@@ -145,7 +145,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/06/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">bisect</a>
+      <a class="article-title" href="/2020/07/06/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">bisect--二分查找</a>
     </h1>
   
 
@@ -159,9 +159,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-
-<p>Bisect模块提供的函数有：</p>
+        <p>Bisect模块提供的函数有：</p>
 <ul>
 <li><strong>bisect.bisect_left(a,x, lo=0, hi=len(a)) :</strong></li>
 </ul>
@@ -183,6 +181,8 @@
 <p>Bisect 模块提供的函数可以分两类： <code>bisect*</code> 只用于查找 index， 不进行实际的插入；而 <code>insort*</code> 则用于实际插入。</p>
 <p>用 bisect 模块实现二分查找：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bisect <span class="keyword">import</span> bisect_left</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search_bisect</span><span class="params">(lst, x)</span>:</span></span><br><span class="line">    i = bisect_left(lst, x)</span><br><span class="line">    <span class="keyword">if</span> i != len(lst) <span class="keyword">and</span> lst[i] == x:</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+
 
 
       
@@ -244,7 +244,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/">php7 php3 无数字字母rce</a>
+      <a class="article-title" href="/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/">bisect--二分查找</a>
     </h1>
   
 
@@ -258,10 +258,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>自己记录怕忘记，本文内容来源于网上大佬</p>
-        
-          <a class="article-more-a" href="/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/#more">more >></a>
-        
+        <h2 id="php7-无数字字母rce"><a href="#php7-无数字字母rce" class="headerlink" title="php7 无数字字母rce"></a>php7 无数字字母rce</h2><p>PHP7前是不允许用<code>($a)();</code>这样的方法来执行动态函数的，但PHP7中增加了对此的支持。所以，我们可以通过<code>(&#39;phpinfo&#39;)();</code>来执行函数，第一个括号中可以是任意PHP表达式。</p>
+<p>所以很简单了，构造一个可以生成<code>phpinfo</code>这个字符串的PHP表达式即可。payload如下（不可见字符用url编码表示）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(~%8F%97%8F%96%91%99%90)();</span><br></pre></td></tr></table></figure>
+
+<h2 id="php5无数字字母rce"><a href="#php5无数字字母rce" class="headerlink" title="php5无数字字母rce"></a>php5无数字字母rce</h2><p>Linux shell知识点：</p>
+<ol>
+<li>shell下可以利用<code>.</code>来执行任意脚本</li>
+<li>Linux文件名支持用glob通配符代替s</li>
+</ol>
+<p>我们可以发送一个上传文件的POST包，此时PHP会将我们上传的文件保存在临时文件夹下，默认的文件名是<code>/tmp/phpXXXXXX</code>，文件名最后6个字符是随机的大小写字母。</p>
+<p>利用<code>[@-[]</code>来表示大写字母；利用*和？代替字母；或者<code>[^x]</code>的方法来构造“这个位置不是字符x”排除一些；</p>
+
       
 
       
@@ -270,6 +278,17 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ctf//" class="article-tag-list-link color4">ctf</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -310,24 +329,46 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/">ctf练习之net-force</a>
+      <a class="article-title" href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/">bisect--二分查找</a>
     </h1>
   
 
 
         
         <a href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/" class="archive-article-date">
-  	<time datetime="2020-07-01T02:27:11.402Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+  	<time datetime="2020-06-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>练习网址：<a href="https://www.net-force.nl/challenges/" target="_blank" rel="noopener">https://www.net-force.nl/challenges/</a></p>
-        
-          <a class="article-more-a" href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/#more">more >></a>
-        
+        <h2 id="JavaScript部分"><a href="#JavaScript部分" class="headerlink" title="JavaScript部分"></a>JavaScript部分</h2><h3 id="Javascript-secure"><a href="#Javascript-secure" class="headerlink" title="Javascript, secure?"></a>Javascript, secure?</h3><p><img src="/img/ctf_net-force-1.png" alt="image"></p>
+<p>通过view-source：url访问查看页面源码<br><img src="/img/ctf_net-force-1-2.png" alt="image"></p>
+<p>找到flag<br><font color=red>知识点：禁用右键查看源码，通过view-source：url访问查看页面源码</font></p>
+<h3 id="This-won’t-take-long…"><a href="#This-won’t-take-long…" class="headerlink" title="This won’t take long…"></a>This won’t take long…</h3><p>页面f12发现js源码<br><img src="/img/ctf_net-force-2-1.png" alt="image"></p>
+<p>放到控制台alert password<br><img src="/img/ctf_net-force-2-2.png" alt="image"></p>
+<p>弹出flag<br><img src="/img/ctf_net-force-2-3.png" alt="image"></p>
+<h3 id="Escape-now"><a href="#Escape-now" class="headerlink" title="Escape now!!!"></a>Escape now!!!</h3><p>直接查看源码找到flag<br><img src="/img/ctf_net-force-3-1.png" alt="image"></p>
+<h3 id="Is-this-safe…"><a href="#Is-this-safe…" class="headerlink" title="Is this safe…?!?"></a>Is this safe…?!?</h3><p>爆破哈希得到密码blaat，并访问页面</p>
+<p><img src="https://i.loli.net/2020/07/01/wtXSmH81NsaoPAb.png" alt=""><br>访问得到flag：blaataap<br><font color=red>知识点：爆破哈希</font></p>
+<h3 id="Micro-oft-crap…"><a href="#Micro-oft-crap…" class="headerlink" title="Micro$oft crap…"></a>Micro$oft crap…</h3><p>题目提示使用ie浏览器</p>
+<p>发现是javascript.encode编码，利用<a href="http://the-computer-site.com/jscript-decode.php进行在线解码。" target="_blank" rel="noopener">http://the-computer-site.com/jscript-decode.php进行在线解码。</a></p>
+<p>仔细看完脚本后，我们能够确定它是用URL计算密码。我们稍微修改脚本，并使其显示存储在URL值中的密码。删除了for循环，因为这只是用来验证密码的代码。通过alert显示addr和pass2两个值。</p>
+<p><img src="https://i.loli.net/2020/07/01/kv6eXjIrVdARmzT.png" alt=""></p>
+<p>访问得到flag</p>
+<h3 id="HTML-Guardian"><a href="#HTML-Guardian" class="headerlink" title="HTML Guardian"></a>HTML Guardian</h3><p>直接获得flag</p>
+<p><img src="https://i.loli.net/2020/07/01/iHMudfKcCo7WjhT.png" alt=""></p>
+<h3 id="Having-fun"><a href="#Having-fun" class="headerlink" title="Having fun?!? :-)"></a>Having fun?!? :-)</h3><p><img src="https://i.loli.net/2020/07/01/RxsvGYA7efuatXQ.png" alt=""></p>
+<p>控制台输出</p>
+<p><img src="https://i.loli.net/2020/07/01/eYEQ9uqoCizNJ6f.png" alt=""></p>
+<p>继续控制台输出找到passwdok</p>
+<p><img src="https://i.loli.net/2020/07/01/b1gNxUumYQ7yTqC.png" alt=""></p>
+<p>继续控制台输出</p>
+<p><img src="https://i.loli.net/2020/07/01/Log8cTKw2yXGUae.png" alt=""></p>
+<p>利用网站破解sha1<a href="https://md5decrypt.net/" target="_blank" rel="noopener">https://md5decrypt.net/</a></p>
+<p>得到用户名密码：bas/dude</p>
+
       
 
       
@@ -336,6 +377,17 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ctf//" class="article-tag-list-link color4">ctf</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
