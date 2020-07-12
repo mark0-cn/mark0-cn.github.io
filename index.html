@@ -159,27 +159,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title:leetcode-1-两数之和<br>toc:true<br>categories:- [leetcode]</p>
-<hr>
-<p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+        <p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
 <p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。</p>
-<p>示例:</p>
-<p>给定 nums = [2, 7, 11, 15], target = 9</p>
-<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
-<h2 id="双重循环暴力解法"><a href="#双重循环暴力解法" class="headerlink" title="双重循环暴力解法"></a>双重循环暴力解法</h2><img src="https://i.loli.net/2020/07/11/pCJIHEDAeTiwhW9.png" style="zoom:67%;" />
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums: List[int], target: int)</span> -&gt; List[int]:</span></span><br><span class="line">        tar=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[i]+nums[j]==target:</span><br><span class="line">                    <span class="keyword">return</span> [i,j]</span><br></pre></td></tr></table></figure>
-
-<h2 id="单重循环暴力破解"><a href="#单重循环暴力破解" class="headerlink" title="单重循环暴力破解"></a>单重循环暴力破解</h2><img src="https://i.loli.net/2020/07/11/9OKrMovElJ1gVhj.png" style="zoom:67%;" />
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums: List[int], target: int)</span> -&gt; List[int]:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            a=target-nums[i]</span><br><span class="line">            <span class="keyword">if</span> a <span class="keyword">in</span> nums <span class="keyword">and</span> i!=nums.index(a):</span><br><span class="line">                <span class="keyword">return</span>[i,nums.index(a)]</span><br></pre></td></tr></table></figure>
-
-<h2 id="用字典模拟哈希求解"><a href="#用字典模拟哈希求解" class="headerlink" title="用字典模拟哈希求解"></a>用字典模拟哈希求解</h2><img src="https://i.loli.net/2020/07/11/qz6rDXQ9xhBntuU.png" style="zoom: 67%;" />
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums: List[int], target: int)</span> -&gt; List[int]:</span></span><br><span class="line">        hashlist=&#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> target-nums[i] <span class="keyword">in</span> hashlist:</span><br><span class="line">                <span class="keyword">return</span> [i,hashlist[target-nums[i]]]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                hashlist[nums[i]]=i</span><br></pre></td></tr></table></figure>
-
-
+        
+          <a class="article-more-a" href="/2020/07/11/leetcode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/#more">more >></a>
+        
       
 
       
@@ -188,6 +172,17 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -305,14 +300,14 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/07/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">bisect--二分查找</a>
+      <a class="article-title" href="/2020/07/06/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">python bisect--二分查找</a>
     </h1>
   
 
 
         
-        <a href="/2020/07/07/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="archive-article-date">
-  	<time datetime="2020-07-07T12:21:26.106Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-07</time>
+        <a href="/2020/07/06/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="archive-article-date">
+  	<time datetime="2020-07-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
 </a>
         
       </header>
@@ -321,7 +316,7 @@
       
         <p>这个模块对有序列表提供了支持，使得他们可以在插入新数据仍然保持有序。对于长列表，如果其包含元素的比较操作十分昂贵的话，这可以是对更常见方法的改进。这个模块叫做 <a href="https://docs.python.org/zh-cn/3/library/bisect.html#module-bisect" target="_blank" rel="noopener"><code>bisect</code></a> 因为其使用了基本的二分（bisection）算法。源代码也可以作为很棒的算法示例（边界判断也做好啦！）</p>
         
-          <a class="article-more-a" href="/2020/07/07/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/#more">more >></a>
+          <a class="article-more-a" href="/2020/07/06/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/#more">more >></a>
         
       
 
@@ -345,7 +340,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/07/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/07/06/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">展开全文 >></a>
         </p>
       
 

@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>python queue--队列 | mark0</title>
+  <title>python bisect--二分查找 | mark0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="queue 模块即队列，特别适合处理信息在多个线程间安全交换的多线程程序中。下面对 queue 模块进行一个详细的使用介绍。">
+  <meta name="description" content="这个模块对有序列表提供了支持，使得他们可以在插入新数据仍然保持有序。对于长列表，如果其包含元素的比较操作十分昂贵的话，这可以是对更常见方法的改进。这个模块叫做 bisect 因为其使用了基本的二分（bisection）算法。源代码也可以作为很棒的算法示例（边界判断也做好啦！）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python queue--队列">
-<meta property="og:url" content="http://yoursite.com/2020/07/07/[python]queue%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:title" content="python bisect--二分查找">
+<meta property="og:url" content="http://yoursite.com/2020/07/06/[python]bisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/index.html">
 <meta property="og:site_name" content="mark0">
-<meta property="og:description" content="queue 模块即队列，特别适合处理信息在多个线程间安全交换的多线程程序中。下面对 queue 模块进行一个详细的使用介绍。">
+<meta property="og:description" content="这个模块对有序列表提供了支持，使得他们可以在插入新数据仍然保持有序。对于长列表，如果其包含元素的比较操作十分昂贵的话，这可以是对更常见方法的改进。这个模块叫做 bisect 因为其使用了基本的二分（bisection）算法。源代码也可以作为很棒的算法示例（边界判断也做好啦！）">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-07T12:44:10.403Z">
-<meta property="article:modified_time" content="2020-07-08T07:17:10.147Z">
+<meta property="article:published_time" content="2020-07-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-12T07:31:50.517Z">
 <meta property="article:author" content="mark0">
 <meta name="twitter:card" content="summary">
   
@@ -140,85 +140,56 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-[python]queue模块" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-[python]bisect--数组二分查找" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      python queue--队列
+      python bisect--二分查找
     </h1>
   
 
 
         
-        <a href="/2020/07/07/%5Bpython%5Dqueue%E6%A8%A1%E5%9D%97/" class="archive-article-date">
-  	<time datetime="2020-07-07T12:44:10.403Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-07</time>
+        <a href="/2020/07/06/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="archive-article-date">
+  	<time datetime="2020-07-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>queue 模块即队列，特别适合处理信息在多个线程间安全交换的多线程程序中。下面对 queue 模块进行一个详细的使用介绍。</p>
+        <p>这个模块对有序列表提供了支持，使得他们可以在插入新数据仍然保持有序。对于长列表，如果其包含元素的比较操作十分昂贵的话，这可以是对更常见方法的改进。这个模块叫做 <a href="https://docs.python.org/zh-cn/3/library/bisect.html#module-bisect" target="_blank" rel="noopener"><code>bisect</code></a> 因为其使用了基本的二分（bisection）算法。源代码也可以作为很棒的算法示例（边界判断也做好啦！）</p>
 <a id="more"></a>
 
-<h2 id="1-queue-模块定义的类和异常"><a href="#1-queue-模块定义的类和异常" class="headerlink" title="1 queue 模块定义的类和异常"></a>1 queue 模块定义的类和异常</h2><p>queue 模块定义了以下四种不同类型的队列，它们之间的区别在于数据入队列之后出队列的顺序不同。</p>
-<h3 id="1-1队列：-queue-Queue-maxsize-0"><a href="#1-1队列：-queue-Queue-maxsize-0" class="headerlink" title="1.1队列： queue.Queue(maxsize=0)"></a>1.1队列： queue.Queue(maxsize=0)</h3><p>先进先出(First In First Out: FIFO)队列，最早进入队列的数据拥有出队列的优先权，就像看电影入场时排队一样，排在队伍前头的优先进入电影院。</p>
-<p>入参 maxsize 是一个整数，用于设置队列的最大长度。一旦队列达到上限，插入数据将会被阻塞，直到有数据出队列之后才可以继续插入。如果 maxsize 设置为小于或等于零，则队列的长度没有限制。</p>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line">q = queue.Queue()  <span class="comment"># 创建 Queue 队列</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    q.put(i)  <span class="comment"># 在队列中依次插入0、1、2元素</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    print(q.get())  <span class="comment"># 依次从队列中取出插入的元素，数据元素输出顺序为0、1、2</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2-栈队列：queue-LifoQueue-maxsize-0"><a href="#1-2-栈队列：queue-LifoQueue-maxsize-0" class="headerlink" title="1.2 栈队列：queue.LifoQueue(maxsize=0)"></a>1.2 栈队列：queue.LifoQueue(maxsize=0)</h3><p>后进先出(Last In First Out: LIFO)队列，最后进入队列的数据拥有出队列的优先权，就像栈一样。</p>
-<p>入参 maxsize 与先进先出队列的定义一样。</p>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line">q = queue.LifoQueue()  <span class="comment"># 创建 LifoQueue 队列</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    q.put(i)  <span class="comment"># 在队列中依次插入0、1、2元素</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    print(q.get())  <span class="comment"># 依次从队列中取出插入的元素，数据元素输出顺序为2、1、0</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="1-3-优先队列：PriorityQueue-maxsize-0"><a href="#1-3-优先队列：PriorityQueue-maxsize-0" class="headerlink" title="1.3 优先队列：PriorityQueue(maxsize=0)"></a>1.3 优先队列：PriorityQueue(maxsize=0)</h3><p>优先级队列，比较队列中每个数据的大小，值最小的数据拥有出队列的优先权。数据一般以元组的形式插入，典型形式为(priority_number, data)。如果队列中的数据没有可比性，那么数据将被包装在一个类中，忽略数据值，仅仅比较优先级数字。</p>
-<p>入参 maxsize 与先进先出队列的定义一样。</p>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line">q = queue.PriorityQueue()  <span class="comment"># 创建 PriorityQueue 队列</span></span><br><span class="line">data1 = (<span class="number">1</span>, <span class="string">'python'</span>)</span><br><span class="line">data2 = (<span class="number">2</span>, <span class="string">'-'</span>)</span><br><span class="line">data3 = (<span class="number">3</span>, <span class="string">'100'</span>)</span><br><span class="line">style = (data2, data3, data1)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> style:</span><br><span class="line">    q.put(i)  <span class="comment"># 在队列中依次插入元素 data2、data3、data1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    print(q.get())  <span class="comment"># 依次从队列中取出插入的元素，数据元素输出顺序为 data1、data2、data3</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="1-4-简单队列：queue-SimpleQueue"><a href="#1-4-简单队列：queue-SimpleQueue" class="headerlink" title="1.4 简单队列：queue.SimpleQueue"></a>1.4 简单队列：queue.SimpleQueue</h3><p>先进先出类型的简单队列，没有大小限制。由于它是简单队列，相比于 Queue 队列会缺少一些高级功能，下面第2-3小节将会介绍。</p>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line">q = queue.SimpleQueue()  <span class="comment"># 创建 SimpleQueue 队列</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    q.put(i)  <span class="comment"># 在队列中依次插入0、1、2元素</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    print(q.get())  <span class="comment"># 依次从队列中取出插入的元素，数据元素输出顺序为0、1、2</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-Queue、LifoQueue、PriorityQueue-和-SimpleQueue-对象的基本使用方法"><a href="#2-Queue、LifoQueue、PriorityQueue-和-SimpleQueue-对象的基本使用方法" class="headerlink" title="2 Queue、LifoQueue、PriorityQueue 和 SimpleQueue 对象的基本使用方法"></a>2 Queue、LifoQueue、PriorityQueue 和 SimpleQueue 对象的基本使用方法</h2><p>Queue、LifoQueue、PriorityQueue 和 SimpleQueue 四种队列定义的对象均提供了以下函数使用方法，下面以 Queue 队列为例进行介绍。</p>
-<h3 id="2-1-Queue-qsize"><a href="#2-1-Queue-qsize" class="headerlink" title="2.1 Queue.qsize()"></a>2.1 Queue.qsize()</h3><p>返回队列中数据元素的个数。</p>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line">q = queue.Queue()</span><br><span class="line">q.put(<span class="string">'python-100'</span>)  <span class="comment"># 在队列中插入元素 'python-100'</span></span><br><span class="line">print(q.qsize())  <span class="comment"># 输出队列中元素个数为1</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-Queue-empty"><a href="#2-2-Queue-empty" class="headerlink" title="2.2 Queue.empty()"></a>2.2 Queue.empty()</h3><p>如果队列为空，返回 True，否则返回 False。</p>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line">q = queue.Queue()</span><br><span class="line">print(q.empty())  <span class="comment"># 对列为空，返回 True</span></span><br><span class="line">q.put(<span class="string">'python-100'</span>)  <span class="comment"># 在队列中插入元素 'python-100'</span></span><br><span class="line">print(q.empty())  <span class="comment"># 对列不为空，返回 False</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3-Queue-full"><a href="#2-3-Queue-full" class="headerlink" title="2.3 Queue.full()"></a>2.3 Queue.full()</h3><p>如果队列中元素个数达到上限，返回 True，否则返回 False。</p>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line">q = queue.Queue(<span class="number">3</span>)  <span class="comment"># 定义一个长度为3的队列</span></span><br><span class="line">print(q.full())  <span class="comment"># 元素个数未达到上限，返回 False</span></span><br><span class="line">q.put(<span class="string">'python'</span>)  <span class="comment"># 在队列中插入字符串 'python'</span></span><br><span class="line">q.put(<span class="string">'-'</span>) <span class="comment"># 在队列中插入字符串 '-'</span></span><br><span class="line">q.put(<span class="string">'100'</span>) <span class="comment"># 在队列中插入字符串 '100'</span></span><br><span class="line">print(q.full())  <span class="comment"># 元素个数达到上限，返回 True</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-4-Queue-put-item-block-True-timeout-None"><a href="#2-4-Queue-put-item-block-True-timeout-None" class="headerlink" title="2.4 Queue.put(item, block=True, timeout=None)"></a>2.4 Queue.put(item, block=True, timeout=None)</h3><ul>
-<li>item，放入队列中的数据元素。</li>
-<li>block，当队列中元素个数达到上限继续往里放数据时：如果 block=False，直接引发 queue.Full 异常；如果 block=True，且 timeout=None，则一直等待直到有数据出队列后可以放入数据；如果 block=True，且 timeout=N，N 为某一正整数时，则等待 N 秒，如果队列中还没有位置放入数据就引发 queue.Full 异常。</li>
-<li>timeout，设置超时时间。</li>
-</ul>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    q = queue.Queue(<span class="number">2</span>)  <span class="comment"># 设置队列上限为2</span></span><br><span class="line">    q.put(<span class="string">'python'</span>)  <span class="comment"># 在队列中插入字符串 'python'</span></span><br><span class="line">    q.put(<span class="string">'-'</span>) <span class="comment"># 在队列中插入字符串 '-'</span></span><br><span class="line">    q.put(<span class="string">'100'</span>, block = <span class="literal">True</span>, timeout = <span class="number">5</span>) <span class="comment"># 队列已满，继续在队列中插入字符串 '100'，等待5秒后会引发 queue.Full 异常</span></span><br><span class="line"><span class="keyword">except</span> queue.Full:</span><br><span class="line">    print(<span class="string">'queue.Full'</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-5-Queue-put-nowait-item"><a href="#2-5-Queue-put-nowait-item" class="headerlink" title="2.5 Queue.put_nowait(item)"></a>2.5 Queue.put_nowait(item)</h3><p>相当于 Queue.put(item, block=False)，当队列中元素个数达到上限继续往里放数据时直接引发 queue.Full 异常。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    q = queue.Queue(<span class="number">2</span>)  <span class="comment"># 设置队列上限为2</span></span><br><span class="line">    q.put_nowait(<span class="string">'python'</span>)  <span class="comment"># 在队列中插入字符串 'python'</span></span><br><span class="line">    q.put_nowait(<span class="string">'-'</span>) <span class="comment"># 在队列中插入字符串 '-'</span></span><br><span class="line">    q.put_nowait(<span class="string">'100'</span>) <span class="comment"># 队列已满，继续在队列中插入字符串 '100'，直接引发 queue.Full 异常</span></span><br><span class="line"><span class="keyword">except</span> queue.Full:</span><br><span class="line">    print(<span class="string">'queue.Full'</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-6-Queue-get-block-True-timeout-None"><a href="#2-6-Queue-get-block-True-timeout-None" class="headerlink" title="2.6 Queue.get(block=True, timeout=None)"></a>2.6 Queue.get(block=True, timeout=None)</h3><p>从队列中取出数据并返回该数据内容。</p>
+<p>Bisect模块提供的函数有：</p>
 <ul>
-<li>block，当队列中没有数据元素继续取数据时：如果 block=False，直接引发 queue.Empty 异常；如果 block=True，且 timeout=None，则一直等待直到有数据入队列后可以取出数据；如果 block=True，且 timeout=N，N 为某一正整数时，则等待 N 秒，如果队列中还没有数据放入的话就引发 queue.Empty 异常。</li>
-<li>timeout，设置超时时间。</li>
+<li><strong>bisect.bisect_left(a,x, lo=0, hi=len(a)) :</strong></li>
 </ul>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    q = queue.Queue()</span><br><span class="line">    q.get(block = <span class="literal">True</span>, timeout = <span class="number">5</span>) <span class="comment"># 队列为空，往队列中取数据时，等待5秒后会引发 queue.Empty 异常</span></span><br><span class="line"><span class="keyword">except</span> queue.Empty:</span><br><span class="line">    print(<span class="string">'queue.Empty'</span>)</span><br></pre></td></tr></table></figure>
+<p>查找在有序列表 a 中插入 x 的index。lo 和 hi 用于指定列表的区间，默认是使用整个列表。如果 x 已经存在，在其左边插入。返回值为 index。</p>
+<ul>
+<li><strong>bisect.bisect_right(a,x, lo=0, hi=len(a))</strong></li>
+<li><strong>bisect.bisect(a, x,lo=0, hi=len(a)) ：</strong></li>
+</ul>
+<p>这2个函数和 bisect_left 类似，但如果 x 已经存在，在其右边插入。</p>
+<ul>
+<li><strong>bisect.insort_left(a,x, lo=0, hi=len(a)) ：</strong></li>
+</ul>
+<p>在有序列表 a 中插入 x。和 a.insert(bisect.bisect_left(a,x, lo, hi), x) 的效果相同。</p>
+<ul>
+<li><strong>bisect.insort_right(a,x, lo=0, hi=len(a))</strong></li>
+<li><strong>bisect.insort(a, x,lo=0, hi=len(a)) :</strong></li>
+</ul>
+<p>和 insort_left 类似，但如果 x 已经存在，在其右边插入。</p>
+<p>Bisect 模块提供的函数可以分两类： <code>bisect*</code> 只用于查找 index， 不进行实际的插入；而 <code>insort*</code> 则用于实际插入。</p>
+<p>用 bisect 模块实现二分查找：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bisect <span class="keyword">import</span> bisect_left</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search_bisect</span><span class="params">(lst, x)</span>:</span></span><br><span class="line">    i = bisect_left(lst, x)</span><br><span class="line">    <span class="keyword">if</span> i != len(lst) <span class="keyword">and</span> lst[i] == x:</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="2-7-Queue-get-nowait"><a href="#2-7-Queue-get-nowait" class="headerlink" title="2.7 Queue.get_nowait()"></a>2.7 Queue.get_nowait()</h3><p>相当于 Queue.get(block=False)block，当队列中没有数据元素继续取数据时直接引发 queue.Empty 异常。</p>
-<p>示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    q = queue.Queue()</span><br><span class="line">    q.get_nowait() <span class="comment"># 队列为空，往队列中取数据时直接引发 queue.Empty 异常</span></span><br><span class="line"><span class="keyword">except</span> queue.Empty:</span><br><span class="line">    print(<span class="string">'queue.Empty'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
       
 
       
@@ -287,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/07/[python]queue%E6%A8%A1%E5%9D%97/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/06/[python]bisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,18 +272,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/11/leetcode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/07/%5Bpython%5Dqueue%E6%A8%A1%E5%9D%97/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          leetcode-1-两数之和
+          python queue--队列
         
       </div>
     </a>
   
   
-    <a href="/2020/07/06/%5Bpython%5Dbisect--%E6%95%B0%E7%BB%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">python bisect--二分查找</div>
+    <a href="/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">php7 php5无数字字母rce</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -339,7 +310,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-queue-模块定义的类和异常"><span class="toc-number">1.</span> <span class="toc-text">1 queue 模块定义的类和异常</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1队列：-queue-Queue-maxsize-0"><span class="toc-number">1.1.</span> <span class="toc-text">1.1队列： queue.Queue(maxsize&#x3D;0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-栈队列：queue-LifoQueue-maxsize-0"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 栈队列：queue.LifoQueue(maxsize&#x3D;0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-优先队列：PriorityQueue-maxsize-0"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 优先队列：PriorityQueue(maxsize&#x3D;0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-简单队列：queue-SimpleQueue"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 简单队列：queue.SimpleQueue</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Queue、LifoQueue、PriorityQueue-和-SimpleQueue-对象的基本使用方法"><span class="toc-number">2.</span> <span class="toc-text">2 Queue、LifoQueue、PriorityQueue 和 SimpleQueue 对象的基本使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Queue-qsize"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Queue.qsize()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Queue-empty"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Queue.empty()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Queue-full"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Queue.full()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Queue-put-item-block-True-timeout-None"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 Queue.put(item, block&#x3D;True, timeout&#x3D;None)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Queue-put-nowait-item"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 Queue.put_nowait(item)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-Queue-get-block-True-timeout-None"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 Queue.get(block&#x3D;True, timeout&#x3D;None)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-Queue-get-nowait"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 Queue.get_nowait()</span></a></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
