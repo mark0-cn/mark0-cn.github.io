@@ -314,6 +314,37 @@
   
 
 
+
+
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'true' == true ? true : false;
+    var verify = 'true' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "jnAz16jVYPnPiwIXQNoE9886-gzGzoHsz",
+        app_key: "CnIEDXNpa2djTd3aMY7fcayC",
+        placeholder: "请大佬多多指教",
+        avatar:"",
+    });
+</script>
+
+          </section>
+        
+
+
+
           </div>
         </div>
       </div>
