@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | mark0</title>
+  <title>菜鸟小白从0学习pwn mips（一） | mark0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="mark0">
-<meta property="og:url" content="http://yoursite.com/archives/2020/page/2/index.html">
+  <meta name="description" content="在一次ctf pwn做题时，碰到mips。对于小白的我太难了。。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="菜鸟小白从0学习pwn mips（一）">
+<meta property="og:url" content="http://yoursite.com/2020/08/16/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="mark0">
+<meta property="og:description" content="在一次ctf pwn做题时，碰到mips。对于小白的我太难了。。。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-16T11:13:31.876Z">
+<meta property="article:modified_time" content="2020-08-17T02:23:58.112Z">
 <meta property="article:author" content="mark0">
 <meta name="twitter:card" content="summary">
   
@@ -136,39 +140,583 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-菜鸟小白从0学习pwn mips（一）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/" class="archive-article-date">
-  	<time datetime="2020-07-03T02:21:39.024Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/03/php7%20php3%20%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8Drce/">php7 php5无数字字母rce</a>
+    <h1 class="article-title" itemprop="name">
+      菜鸟小白从0学习pwn mips（一）
     </h1>
   
 
 
 
-        <div class="article-info info-on-right">
-          
-          
+
+        
+        <a href="/2020/08/16/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-08-16T11:13:31.876Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在一次ctf pwn做题时，碰到mips。对于小白的我太难了。。。</p>
+<a id="more"></a>
+
+<h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h3><p>32个通用寄存器：<br>MIPS的寄存器约定，一种32个寄存器</p>
+<blockquote>
+<p>0 zero： 总返回0<br>1 at： （汇编暂存寄存器）为汇编保留<br>2-3 v0、v1：存放子函数调用返回结果，还可用于表达式求值<br>4-7 a0 - a3：存放向子函数传递的参数<br>8-15 t0- t7：存放临时运算结果，在发生函数调用时不必保存它们的内容<br>24,25 t8-t9:<br>16-23 s0 - s7：存放局部变量，在发生函数调用时一般要保存它们的内容<br>26,27 k0, k1：为中断/陷入处理保留，你也可以改变<br>28 gp：全局指针<br>29 sp： 栈(stack)指针<br>30 s8/fp： 帧(frame)指针<br>31 ra： 返回地址（用于过程调用</p>
+</blockquote>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>MIPS CPU的一次操作可加载或存储1到8个字节的数据。<br>MIPS名称<br>大小（字节）</p>
+<p>汇编器助记符</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">dword</td>
+<td align="left">8</td>
+<td align="left">“d”代表ld</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">word</td>
+<td align="left">4</td>
+<td align="left">“w”代表lw</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">halfword</td>
+<td align="left">2</td>
+<td align="left">“h”代表lh</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">byte</td>
+<td align="left">1</td>
+<td align="left">“b”代表lb</td>
+<td>`</td>
+</tr>
+</tbody></table>
+<h3 id="操作指令"><a href="#操作指令" class="headerlink" title="操作指令"></a>操作指令</h3><p>b站有个最基础的入门<a href="https://space.bilibili.com/24014925" target="_blank" rel="noopener">正月点灯笼</a></p>
+<p>加载和存储（load、store）</p>
+<p>Load</p>
+<p>在一个内存地址加载word/halfword/byte的数据到一个寄存器</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">lw r, a</td>
+<td align="left">R&lt;-a</td>
+</tr>
+<tr>
+<td align="left">lh r, a</td>
+<td align="left">有符号</td>
+</tr>
+<tr>
+<td align="left">lb r, a</td>
+<td align="left">有符号</td>
+</tr>
+<tr>
+<td align="left">lhu</td>
+<td align="left">无符号</td>
+</tr>
+<tr>
+<td align="left">lbu</td>
+<td align="left">无符号</td>
+</tr>
+<tr>
+<td align="left">li r,c</td>
+<td align="left">加载立即数</td>
+</tr>
+</tbody></table>
+<p>Store</p>
+<p>将寄存器中的数据存储到内存地址</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Sw r, a</td>
+<td align="left">R-&gt;a</td>
+</tr>
+<tr>
+<td align="left">Sh r, a</td>
+<td align="left">Store low halfword</td>
+</tr>
+<tr>
+<td align="left">Sb r, a</td>
+<td align="left">Store low byte</td>
+</tr>
+</tbody></table>
+<p>Move：</p>
+<p>寄存器之间数据的直接交换</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">move r , s</td>
+<td align="left">R&lt;-s</td>
+</tr>
+</tbody></table>
+<p>逻辑运算</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">and r, s, t</td>
+<td align="left">R &lt;-s . t</td>
+</tr>
+<tr>
+<td align="left">or r, s, t</td>
+<td align="left">R &lt;-s + t</td>
+</tr>
+<tr>
+<td align="left">not r, s</td>
+<td align="left">R &lt;-s取反</td>
+</tr>
+<tr>
+<td align="left">xor r, s, t</td>
+<td align="left">R &lt;-s异或t</td>
+</tr>
+<tr>
+<td align="left">nor r, s, t</td>
+<td align="left">R &lt;-(s+t)再取反</td>
+</tr>
+</tbody></table>
+<p>算数运算</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">add r, s, t</td>
+<td align="left">R-&gt;s + t</td>
+</tr>
+<tr>
+<td align="left">sub r, s, t</td>
+<td align="left">R-&gt;s – t</td>
+</tr>
+<tr>
+<td align="left">mul r, s, t</td>
+<td align="left">R-&gt;s*t</td>
+</tr>
+<tr>
+<td align="left">div r, s, t</td>
+<td align="left">R-&gt;s/t</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>hi和lo乘法器相关的寄存器规模结果接口，不能用于乘和除之外的操作。对于以上二者，不存在直接寻址；必须要通过mfhi(“move from hi”)以及mflo(“move from lo”)两条指令分别来进行访问对应的内容。</p>
+</li>
+<li><p>乘法——将两个整数的相乘结果分成两部分存储的指定的寄存器里。</p>
+</li>
+<li><p>除法——lo寄存器存储结果（商），hi寄存器存储余数。</p>
+<p>移位操作</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sll r, s, c</td>
+<td align="left">r ← shift s left c bits</td>
+</tr>
+<tr>
+<td align="left">srl r, s, c</td>
+<td align="left">r ← shift s right c bits</td>
+</tr>
+</tbody></table>
+<p>分支操作</p>
+<p>通过条件判断，使程序跳转到tag</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">b tag</td>
+<td align="left">跳转-&gt;tag</td>
+</tr>
+<tr>
+<td align="left">beq r, s, tag</td>
+<td align="left">R=s -&gt;tag</td>
+</tr>
+<tr>
+<td align="left">bne r, s, tag</td>
+<td align="left">R != s-&gt;tag</td>
+</tr>
+<tr>
+<td align="left">bgt r, s, tag</td>
+<td align="left">R &gt; s-&gt;tag</td>
+</tr>
+<tr>
+<td align="left">bge r, s, tag</td>
+<td align="left">R &gt;=s-&gt;tag</td>
+</tr>
+<tr>
+<td align="left">blt r, s, tag</td>
+<td align="left">R &lt; s-&gt;tag</td>
+</tr>
+<tr>
+<td align="left">ble r, s, tag</td>
+<td align="left">R&lt;=s-&gt;tag</td>
+</tr>
+</tbody></table>
+<p>比较指令</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">slt r, s, t</td>
+<td align="left">S &lt; t</td>
+</tr>
+<tr>
+<td align="left">sle r, s, t</td>
+<td align="left">S &lt;= t</td>
+</tr>
+<tr>
+<td align="left">sgt r, s, t</td>
+<td align="left">S &gt;t</td>
+</tr>
+<tr>
+<td align="left">sge r, s, t</td>
+<td align="left">S &gt;= t</td>
+</tr>
+<tr>
+<td align="left">seq r, s, t</td>
+<td align="left">S = t</td>
+</tr>
+<tr>
+<td align="left">sne r, s, t</td>
+<td align="left">S != t</td>
+</tr>
+</tbody></table>
+<ul>
+<li>FALSE r &lt;- 0</li>
+<li>TRUE r &lt;- 1</li>
+</ul>
+<p>寻址方式</p>
+<p>直接寻址：<br>MIPS只有一种寻址方式。任何加载或存储机器指令可以写成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lw $1, offset($2)</span><br></pre></td></tr></table></figure>
+
+<p>你可以使用任何寄存器来作为目标和源寄存器。offset偏移量是一个有符号的16位<br>的数字(因此可以是在-32768与32767之间的任何一值)。用来加载的程序地址是源寄<br>存器与偏移量的和所构成的地址。<br>($t0) —— 默认从0地址偏移$t0字节<br>访问连续的内存空间：<br>根据程序的实际需要可能进行字符串等数据的访问。</p>
+<ul>
+<li><p>.ascii s ASCII encoded characters of string s</p>
+</li>
+<li><p>.asciiz s l ike .ascii, null-terminated</p>
+</li>
+<li><p>.word w1, w2,… 32-bit words w1, w2, . . .</p>
+</li>
+<li><p>.half h 1, h 2, . . . 16-bit halfwords h 1, h 2, . . .</p>
+</li>
+<li><p>.byte b1, b2, . . . 8-bit bytes b1, b2, . . .</p>
+</li>
+<li><p>.float f1, f2, . . . 32-bit single precision floating point numbers f1, f2, . . .</p>
+</li>
+<li><p>.double d1, d2, . . . 64-bit double precision floating point numbers d1, d2, . . .</p>
+</li>
+<li><p>.space n n zero bytes</p>
+<p>例如：</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>.data</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>str: .asciiz “hello word”</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>系统调用：syscall</p>
+<p>MIPS 提供一条特殊的 syscall 指令,从操作系统获取服务<br>使用 syscall 系统服务<br>从 $v0寄存器中读取服务数<br>从 $a0, $a1, 等寄存器中读取参数值（如果有）<br>发送 syscall 指令<br>从结果寄存器中取回返回值（如果有）</p>
+<h3 id="Table-of-Available-Services"><a href="#Table-of-Available-Services" class="headerlink" title="Table of Available Services"></a>Table of Available Services</h3><table>
+<thead>
+<tr>
+<th align="left">Service</th>
+<th align="left">Code in $v0</th>
+<th align="left">Arguments</th>
+<th align="left">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">print integer</td>
+<td align="left">1</td>
+<td align="left">$a0 = integer to print</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">print float</td>
+<td align="left">2</td>
+<td align="left">$f12 = float to print</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">print double</td>
+<td align="left">3</td>
+<td align="left">$f12 = double to print</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">print string</td>
+<td align="left">4</td>
+<td align="left">$a0 = address of null-terminated string to print</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">read integer</td>
+<td align="left">5</td>
+<td align="left"></td>
+<td align="left">$v0 contains integer read</td>
+</tr>
+<tr>
+<td align="left">read float</td>
+<td align="left">6</td>
+<td align="left"></td>
+<td align="left">$f0 contains float read</td>
+</tr>
+<tr>
+<td align="left">read double</td>
+<td align="left">7</td>
+<td align="left"></td>
+<td align="left">$f0 contains double read</td>
+</tr>
+<tr>
+<td align="left">read string</td>
+<td align="left">8</td>
+<td align="left">$a0 = address of input buffer $a1 = maximum number of characters to read</td>
+<td align="left"><em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">sbrk (allocate heap memory)</td>
+<td align="left">9</td>
+<td align="left">$a0 = number of bytes to allocate</td>
+<td align="left">$v0 contains address of allocated memory</td>
+</tr>
+<tr>
+<td align="left">exit (terminate execution)</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">print character</td>
+<td align="left">11</td>
+<td align="left">$a0 = character to print</td>
+<td align="left"><em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">read character</td>
+<td align="left">12</td>
+<td align="left"></td>
+<td align="left">$v0 contains character read</td>
+</tr>
+<tr>
+<td align="left">open file</td>
+<td align="left">13</td>
+<td align="left">$a0 = address of null-terminated string containing filename $a1 = flags $a2 = mode</td>
+<td align="left">$v0 contains file descriptor (negative if error). <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">read from file</td>
+<td align="left">14</td>
+<td align="left">$a0 = file descriptor $a1 = address of input buffer $a2 = maximum number of characters to read</td>
+<td align="left">$v0 contains number of characters read (0 if end-of-file, negative if error). <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">write to file</td>
+<td align="left">15</td>
+<td align="left">$a0 = file descriptor $a1 = address of output buffer $a2 = number of characters to write</td>
+<td align="left">$v0 contains number of characters written (negative if error). <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">close file</td>
+<td align="left">16</td>
+<td align="left">$a0 = file descriptor</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">exit2 (terminate with value)</td>
+<td align="left">17</td>
+<td align="left">$a0 = termination result</td>
+<td align="left"><em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left"><em>Services 1 through 17 are compatible with the SPIM simulator, other than Open File (13) as described in the Notes below the table. Services 30 and higher are exclusive to MARS.</em></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">time (system time)</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left">$a0 = low order 32 bits of system time $a1 = high order 32 bits of system time. <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">MIDI out</td>
+<td align="left">31</td>
+<td align="left">$a0 = pitch (0-127) $a1 = duration in milliseconds $a2 = instrument (0-127) $a3 = volume (0-127)</td>
+<td align="left">Generate tone and return immediately. <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">sleep</td>
+<td align="left">32</td>
+<td align="left">$a0 = the length of time to sleep in milliseconds.</td>
+<td align="left">Causes the MARS Java thread to sleep for (at least) the specified number of milliseconds. This timing will not be precise, as the Java implementation will add some overhead.</td>
+</tr>
+<tr>
+<td align="left">MIDI out synchronous</td>
+<td align="left">33</td>
+<td align="left">$a0 = pitch (0-127) $a1 = duration in milliseconds $a2 = instrument (0-127) $a3 = volume (0-127)</td>
+<td align="left">Generate tone and return upon tone completion. <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">print integer in hexadecimal</td>
+<td align="left">34</td>
+<td align="left">$a0 = integer to print</td>
+<td align="left">Displayed value is 8 hexadecimal digits, left-padding with zeroes if necessary.</td>
+</tr>
+<tr>
+<td align="left">print integer in binary</td>
+<td align="left">35</td>
+<td align="left">$a0 = integer to print</td>
+<td align="left">Displayed value is 32 bits, left-padding with zeroes if necessary.</td>
+</tr>
+<tr>
+<td align="left">print integer as unsigned</td>
+<td align="left">36</td>
+<td align="left">$a0 = integer to print</td>
+<td align="left">Displayed as unsigned decimal value.</td>
+</tr>
+<tr>
+<td align="left">(not used)</td>
+<td align="left">37-39</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">set seed</td>
+<td align="left">40</td>
+<td align="left">$a0 = i.d. of pseudorandom number generator (any int). $a1 = seed for corresponding pseudorandom number generator.</td>
+<td align="left">No values are returned. Sets the seed of the corresponding underlying Java pseudorandom number generator (<code>java.util.Random</code>). <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">random int</td>
+<td align="left">41</td>
+<td align="left">$a0 = i.d. of pseudorandom number generator (any int).</td>
+<td align="left">$a0 contains the next pseudorandom, uniformly distributed int value from this random number generator’s sequence.<em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">random int range</td>
+<td align="left">42</td>
+<td align="left">$a0 = i.d. of pseudorandom number generator (any int). $a1 = upper bound of range of returned values.</td>
+<td align="left">$a0 contains pseudorandom, uniformly distributed int value in the range 0 &lt;= [int] &lt; [upper bound], drawn from this random number generator’s sequence. <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">random float</td>
+<td align="left">43</td>
+<td align="left">$a0 = i.d. of pseudorandom number generator (any int).</td>
+<td align="left">$f0 contains the next pseudorandom, uniformly distributed float value in the range 0.0 &lt;= f &lt; 1.0 from this random number generator’s sequence. <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">random double</td>
+<td align="left">44</td>
+<td align="left">$a0 = i.d. of pseudorandom number generator (any int).</td>
+<td align="left">$f0 contains the next pseudorandom, uniformly distributed double value in the range 0.0 &lt;= f &lt; 1.0 from this random number generator’s sequence. <em>See note below table</em></td>
+</tr>
+<tr>
+<td align="left">(not used)</td>
+<td align="left">45-49</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">ConfirmDialog</td>
+<td align="left">50</td>
+<td align="left">$a0 = address of null-terminated string that is the message to user</td>
+<td align="left">$a0 contains value of user-chosen option 0: Yes 1: No 2: Cancel</td>
+</tr>
+<tr>
+<td align="left">InputDialogInt</td>
+<td align="left">51</td>
+<td align="left">$a0 = address of null-terminated string that is the message to user</td>
+<td align="left">$a0 contains int read $a1 contains status value 0: OK status -1: input data cannot be correctly parsed -2: Cancel was chosen -3: OK was chosen but no data had been input into field</td>
+</tr>
+<tr>
+<td align="left">InputDialogFloat</td>
+<td align="left">52</td>
+<td align="left">$a0 = address of null-terminated string that is the message to user</td>
+<td align="left">$f0 contains float read $a1 contains status value 0: OK status -1: input data cannot be correctly parsed -2: Cancel was chosen -3: OK was chosen but no data had been input into field</td>
+</tr>
+<tr>
+<td align="left">InputDialogDouble</td>
+<td align="left">53</td>
+<td align="left">$a0 = address of null-terminated string that is the message to user</td>
+<td align="left">$f0 contains double read $a1 contains status value 0: OK status -1: input data cannot be correctly parsed -2: Cancel was chosen -3: OK was chosen but no data had been input into field</td>
+</tr>
+<tr>
+<td align="left">InputDialogString</td>
+<td align="left">54</td>
+<td align="left">$a0 = address of null-terminated string that is the message to user $a1 = address of input buffer $a2 = maximum number of characters to read</td>
+<td align="left"><em>See Service 8 note below table</em> $a1 contains status value 0: OK status. Buffer contains the input string. -2: Cancel was chosen. No change to buffer.  -3: OK was chosen but no data had been input into field. No change to buffer. -4: length of the input string exceeded the specified maximum. Buffer contains the maximum allowable input string plus a terminating null.</td>
+</tr>
+<tr>
+<td align="left">MessageDialog</td>
+<td align="left">55</td>
+<td align="left">$a0 = address of null-terminated string that is the message to user $a1 = the type of message to be displayed: 0: error message, indicated by Error icon</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -181,61 +729,148 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/16/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%B8%80%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/" class="archive-article-date">
-  	<time datetime="2020-06-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/08/14/Jarvis%20OJ-Smash/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Jarvis OJ-Smash</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/01/ctf%E7%BB%83%E4%B9%A0%E4%B9%8Bnet-force/">ctf练习之net-force</a>
-    </h1>
-  
-
-
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ctf//" class="article-tag-list-link color4">ctf</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#寄存器"><span class="toc-number">1.</span> <span class="toc-text">寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-number">2.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作指令"><span class="toc-number">3.</span> <span class="toc-text">操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Table-of-Available-Services"><span class="toc-number">4.</span> <span class="toc-text">Table of Available Services</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-    </nav>
   
+
+  
+
+  
+
+
+
+
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'true' == true ? true : false;
+    var verify = 'true' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "jnAz16jVYPnPiwIXQNoE9886-gzGzoHsz",
+        app_key: "CnIEDXNpa2djTd3aMY7fcayC",
+        placeholder: "请大佬多多指教",
+        avatar:"",
+    });
+</script>
+
+          </section>
+        
+
 
 
           </div>
@@ -261,8 +896,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

