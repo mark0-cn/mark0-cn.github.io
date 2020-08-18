@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>categories | mark0</title>
+  <title>菜鸟小白从0学习pwn mips（二） | mark0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="ida不能反编译mips，找到一个方法反编译mips">
+<meta property="og:type" content="article">
+<meta property="og:title" content="菜鸟小白从0学习pwn mips（二）">
+<meta property="og:url" content="http://yoursite.com/2020/08/16/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="mark0">
+<meta property="og:description" content="ida不能反编译mips，找到一个方法反编译mips">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-07T13:31:03.000Z">
-<meta property="article:modified_time" content="2020-07-07T13:32:24.417Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200816193241.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200816194041.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200816194123.png">
+<meta property="article:published_time" content="2020-08-16T11:28:14.834Z">
+<meta property="article:modified_time" content="2020-08-17T02:23:22.104Z">
 <meta property="article:author" content="mark0">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200816193241.png">
   
     <link rel="alternative" href="/atom.xml" title="mark0" type="application/atom+xml">
   
@@ -138,20 +144,206 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article class="article article-type-post show">
-  <header class="article-header" style="border-bottom: 1px solid #ccc">
-  <h1 class="article-title" itemprop="name">
-    categories
-  </h1>
-  </header>
+            <article id="post-菜鸟小白从0学习pwn mips（二）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      菜鸟小白从0学习pwn mips（二）
+    </h1>
+  
+
+
+
+
+        
+        <a href="/2020/08/16/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-08-16T11:28:14.834Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ida不能反编译mips，找到一个方法反编译mips</p>
+<a id="more"></a>
+
+<p>如果按照其它pwn题直接放到ida中提示</p>
+<img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200816193241.png" style="zoom:50%;" />
+
+<p>f5不能反编译，所以要找到一个方法去反编译使其容易看出程序逻辑。这里介绍jeb</p>
+<p>介绍网址：<a href="http://www.anyv.net/index.php/article-3407667" target="_blank" rel="noopener">http://www.anyv.net/index.php/article-3407667</a></p>
+<p>破解安装包：<a href="https://www.52pojie.cn/thread-1162477-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1162477-1-1.html</a></p>
+<p>windows10激活步骤:<br>1.添加环境变量 C:WindowsSystem32wbem(win7跳过此步)<br>2.解压文件 jeb-demo-3.17.1.202004121849-JEBDecompilerDemo-121820464987384330.zip<br>3.RLZ.zip,复制fixed目录下的2个文件替换掉步骤2解压目录下的binapp下的文件<br>4.运行jeb,先点关闭后,然后点第二个按钮,手动注册,复制序列号<br>5.RLZ压缩包里的注册机,命令:java -jar kg_1337.jar<br>6.复制生成的注册码,确定,然后点击continue即可</p>
+<p><img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200816194041.png" alt=""></p>
+<p>按tab键即可反编译</p>
+<p><img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200816194123.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ctf//" class="article-tag-list-link color4">ctf</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/16/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%BA%8C%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
 
   
-  <div class="category-all-page">
-    <h2>共计&nbsp;3&nbsp;个分类</h2>
-    <ul class="category-list-item-list"><li class="category-list-item-list-item"><a class="category-list-item-list-link" href="/categories/ctf/">ctf</a><span class="category-list-item-list-count">7</span></li><li class="category-list-item-list-item"><a class="category-list-item-list-link" href="/categories/leetcode/">leetcode</a><span class="category-list-item-list-count">4</span></li><li class="category-list-item-list-item"><a class="category-list-item-list-link" href="/categories/python/">python</a><span class="category-list-item-list-count">2</span></li></ul>
-  </div>
+<nav id="article-nav">
   
-</article>
+  
+    <a href="/2020/08/16/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">菜鸟小白从0学习pwn mips（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+
+
+
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'true' == true ? true : false;
+    var verify = 'true' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "jnAz16jVYPnPiwIXQNoE9886-gzGzoHsz",
+        app_key: "CnIEDXNpa2djTd3aMY7fcayC",
+        placeholder: "请大佬多多指教",
+        avatar:"",
+    });
+</script>
+
+          </section>
+        
+
+
 
           </div>
         </div>
@@ -176,7 +368,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
